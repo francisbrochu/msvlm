@@ -1,0 +1,56 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf100
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\csgray\c0;\csgray\c100000;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 README file\
+\
+DESCRIPTION: \
+\
+This is C++ extension module for mass spectra processing with Python 3. It enables a Python user to find all the nonoverlapping Virtual Lock Mass (VLM) points and alignment points across a set of mass spectra whenever the set of mass spectra is represented as a Python list of Python lists of floats. Each list of the lists is a mass spectrum represented as a list of increasing m/z float values. \
+\
+INSTALLATION: \
+\
+You need to have Python 3 and the boost_python3 library installed on the target machine. In a directory that contains the required source files (Heap.h, Heap.cpp, ActiveSequence.h, ActiveSequence.cpp, msAlignForPy.cpp, setup.py), you need to type the following command:\
+\
+
+\f1 python3 setup.py build
+\f0 \
+\
+This will create a build folder containing a shared library with a system-dependent name. Under OSX with Python 3.6 installed, this file is named \'ab\'a0masAlignForPy.cpython-36m-darwin.so for example. Move this file into a folder that contains your python script that you use for processing mass spectra. \
+\
+USAGE: \
+\
+A python script example, named \'ab\'a0example.py\'a0\'bb can be found in the \'ab\'a0python_use_ex\'a0\'bb folder. As you can see, to import the C++ extension module (here, a shared library), you simply need to include in your script (for example):\
+\
+i
+\f1 mport msAlignForPy as ms
+\f0 \
+\
+Assuming that your set of mass spectra is a list of lists of floats named \'ab\'a0list_of_spectra\'a0\'bb, to find all non overlapping VLMs, you just need to write:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf2 \cb3 \CocoaLigature0 vlm_pts = ms.find_vlm(list_of_spectra, w)\
+\
+
+\f0 where w is the chosen window size in relative units (it is 5e-5 in the provided script example.py). The output of ms.find_vlm() is a list of floats, here called vlm_pts.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \CocoaLigature1 Assuming that your set of mass spectra is a list of lists of floats named \'ab\'a0list_of_spectra\'a0\'bb, to find all non overlapping alignment points, you just need to write:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf2 \cb3 \CocoaLigature0 align_pts = ms.find_alpt(list_of_spectra, w)\
+\
+
+\f0 where w is the chosen window size in relative units (it is 5e-5 in the provided script example.py). The output of ms.find_alpt() is a list of floats, here called align_pts.\
+\
+As you can see in the provided script example.py, a set of spectra is loaded from the CSV file alignment.csv that contains the m/z values of 10 mass spectra: one spectrum per line. The set of VLMs and alignment points are stored in the files vlmPoints.txt and alignmentPoints.txt respectively. 
+\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+}
