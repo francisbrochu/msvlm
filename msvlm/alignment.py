@@ -4,7 +4,7 @@ import numpy as np
 from .msspectrum.spectrum import Spectrum
 from .msspectrum.utils import take_closest, binary_search_mz_values
 from heapq import heappop, heappush, heapreplace
-from .msAlignForPy.msAlignForPy import find_alpt
+from msvlm.msAlign.msAlign import find_alpt
 
 
 class MassSpectraAligner:
