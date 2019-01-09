@@ -1,5 +1,5 @@
-import msAlignForPy as ms
-import csv
+import msvlm.msAlign.msAlign as ms
+import csv 
 
 list_of_spectra = []
 

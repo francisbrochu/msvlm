@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from msspectrum.spectrum import Spectrum
-from msspectrum.utils import take_closest, binary_search_mz_values
+from .msspectrum.spectrum import Spectrum
+from .msspectrum.utils import take_closest, binary_search_mz_values
 from heapq import heappop, heappush, heapreplace
-import msAlignForPy as ms
+from .msAlignForPy.msAlignForPy import find_alpt
 
 
 class MassSpectraAligner:
@@ -27,17 +27,17 @@ class MassSpectraAligner:
             mzs = [mz for mz in s.mz_values]
             peaks_list.append(mzs)
 
-        self.reference_mz = ms.find_alpt(peaks_list, self.window_size * 10**-6)
+        self.reference_mz = find_alpt(peaks_list, self.window_size * 10**-6)
 
     def transform(self, spectra):
         new_spectra = []
-        for i, s in enumerate(spectra):
+        for s in spectra:
             new_spectra.append(self._apply(s))
         return np.asarray(new_spectra)
 
     def transform_test(self, spectra):
         new_spectra = []
-        for i, s in enumerate(spectra):
+        for s in spectra:
             new_spectra.append(self._apply_test(s))
         return np.asarray(new_spectra)
 
