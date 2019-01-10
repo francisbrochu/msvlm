@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+
 import numpy as np
 from bisect import bisect_left
-from msspectrum.preprocessing.discrete import ThresholdedPeakFiltering, MassRangeSelection
-from msspectrum.spectrum import Spectrum
-from msspectrum.utils import binary_search_for_right_range, binary_search_for_left_range
+from .msspectrum.preprocessing.discrete import ThresholdedPeakFiltering, MassRangeSelection
+from .msspectrum.spectrum import Spectrum
+from .msspectrum.utils import binary_search_for_right_range, binary_search_for_left_range
 from copy import deepcopy
-import msAlignForPy as ms
+import msvlm.msAlign.msAlign as ms
 
 
 def take_closest(my_list, my_number, lo=0):

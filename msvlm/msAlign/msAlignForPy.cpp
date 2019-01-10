@@ -105,7 +105,7 @@ bp::list find_alpt(const bp::list  & pylistOfpylists, const bp::object & pyws)
 }
 
 
-BOOST_PYTHON_MODULE(msAlignForPy)
+BOOST_PYTHON_MODULE(msAlign)
 {
     bp::def("find_vlm", &find_vlm);
     bp::def("find_alpt", &find_alpt);
